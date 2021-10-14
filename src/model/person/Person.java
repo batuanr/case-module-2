@@ -2,7 +2,7 @@ package model.person;
 
 import java.time.LocalDate;
 
-public class Person {
+abstract class Person {
     private String name;
     private LocalDate birthDate;
     private String gender;
