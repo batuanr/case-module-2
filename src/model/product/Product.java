@@ -1,6 +1,6 @@
 package model.product;
 
-public class Product {
+abstract class Product {
     private String name;
     private int price;
     private String category;
