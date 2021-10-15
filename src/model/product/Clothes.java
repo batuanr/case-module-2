@@ -1,6 +1,8 @@
 package model.product;
 
-public class Clothes extends Product{
+import java.io.Serializable;
+
+public class Clothes extends Product implements Serializable {
     private String size;
 
     public Clothes() {

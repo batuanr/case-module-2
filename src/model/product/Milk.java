@@ -1,8 +1,9 @@
 package model.product;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Milk extends Product{
+public class Milk extends Product implements Serializable {
     private String manufacturer;
     private LocalDate manufactureDate;
     private LocalDate expiryDate;
@@ -41,7 +42,7 @@ public class Milk extends Product{
 
     @Override
     public String toString() {
-        return "Milk{" +
+        return "Milk{" + super.toString() +
                 "manufacturer='" + manufacturer + '\'' +
                 '}';
     }

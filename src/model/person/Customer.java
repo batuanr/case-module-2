@@ -1,8 +1,9 @@
 package model.person;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Customer extends Person{
+public class Customer extends Person implements Serializable {
     private String type;
     private String id;
 

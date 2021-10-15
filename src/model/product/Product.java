@@ -1,6 +1,8 @@
 package model.product;
 
-abstract class Product {
+import java.io.Serializable;
+
+abstract class Product implements Serializable {
     private String code;
     private String name;
     private int price;
@@ -58,5 +60,14 @@ abstract class Product {
         this.category = category;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
