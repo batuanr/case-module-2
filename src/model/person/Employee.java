@@ -11,12 +11,10 @@ public class Employee extends Person{
     public Employee() {
     }
 
-    public Employee(String name, LocalDate birthDate, String gender, String address, String phoneNumber, int salary, int hardSalary, int bonus) {
+    public Employee(String name, LocalDate birthDate, String gender, String address, String phoneNumber, int salary) {
         super(name, birthDate, gender, address, phoneNumber);
         this.salary = salary;
-        this.hardSalary = hardSalary;
-        this.bonus = bonus;
-        this.password = "12345";
+        this.password = "12345678";
     }
 
     public String getPassword() {

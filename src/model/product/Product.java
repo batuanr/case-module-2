@@ -4,14 +4,24 @@ abstract class Product {
     private String name;
     private int price;
     private String category;
+    private int quantity;
 
     public Product() {
     }
 
-    public Product(String name, int price, String category) {
+    public Product(String name, int price, String category, int quantity) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {

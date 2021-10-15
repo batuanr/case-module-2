@@ -10,8 +10,8 @@ public class Milk extends Product{
     public Milk() {
     }
 
-    public Milk(String name, int price, String category, String manufacturer, LocalDate manufactureDate, LocalDate expiryDate) {
-        super(name, price, category);
+    public Milk(String name, int price, String category, int quantity, String manufacturer, LocalDate manufactureDate, LocalDate expiryDate) {
+        super(name, price, category, quantity);
         this.manufacturer = manufacturer;
         this.manufactureDate = manufactureDate;
         this.expiryDate = expiryDate;
