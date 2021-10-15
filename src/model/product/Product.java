@@ -1,6 +1,7 @@
 package model.product;
 
 abstract class Product {
+    private String code;
     private String name;
     private int price;
     private String category;
@@ -9,11 +10,20 @@ abstract class Product {
     public Product() {
     }
 
-    public Product(String name, int price, String category, int quantity) {
+    public Product(String code, String name, int price, String category, int quantity) {
+        this.code = code;
         this.name = name;
         this.price = price;
         this.category = category;
         this.quantity = quantity;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getQuantity() {
@@ -47,4 +57,6 @@ abstract class Product {
     public void setCategory(String category) {
         this.category = category;
     }
+
+
 }

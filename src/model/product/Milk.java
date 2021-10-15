@@ -10,11 +10,9 @@ public class Milk extends Product{
     public Milk() {
     }
 
-    public Milk(String name, int price, String category, int quantity, String manufacturer, LocalDate manufactureDate, LocalDate expiryDate) {
-        super(name, price, category, quantity);
+    public Milk(String code, String name, int price, String category, int quantity, String manufacturer) {
+        super(code, name, price, category, quantity);
         this.manufacturer = manufacturer;
-        this.manufactureDate = manufactureDate;
-        this.expiryDate = expiryDate;
     }
 
     public String getManufacturer() {
@@ -39,5 +37,12 @@ public class Milk extends Product{
 
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Milk{" +
+                "manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }
