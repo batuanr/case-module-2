@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Worker {
+    private IO io = IO.getInstance();
     private final String MILK_FILE = "milk.obj";
     private final String CLOTHES_FILE = "clothes.obj";
     private final String CUSTOMER_FILE = "customer.obj";
@@ -18,9 +19,9 @@ public class Worker {
     private List<Customer> customerList = new ArrayList<>();
 
     public Worker() {
-        milkList = IO.readToFile(MILK_FILE);
-        clothesList = IO.readToFile(CLOTHES_FILE);
-        customerList = IO.readToFile(CUSTOMER_FILE);
+        milkList = io.readToFile(MILK_FILE);
+        clothesList = io.readToFile(CLOTHES_FILE);
+        customerList = io.readToFile(CUSTOMER_FILE);
     }
 
     public List<Milk> getMilkList() {
@@ -49,15 +50,15 @@ public class Worker {
 //add
     public void addMilk(Milk milk){
         milkList.add(milk);
-        IO.writeFile(MILK_FILE, milkList);
+        io.writeFile(MILK_FILE, milkList);
     }
     public void addClothes(Clothes clothes){
         clothesList.add(clothes);
-        IO.writeFile(CLOTHES_FILE, clothesList);
+        io.writeFile(CLOTHES_FILE, clothesList);
     }
     public void addCustomer(Customer customer){
         customerList.add(customer);
-        IO.writeFile(CUSTOMER_FILE, customerList);
+        io.writeFile(CUSTOMER_FILE, customerList);
     }
 //    find
     public Milk findMilkByCode(String code) throws FileNotFoundException {
@@ -84,12 +85,40 @@ public class Worker {
         }
         throw new FileNotFoundException();
     }
+    public List<Milk> findMilkByCategory(String category){
+        List<Milk> milks = new ArrayList<>();
+        for (Milk milk: milkList){
+            if (milk.getCategory().equals(category)){
+                milks.add(milk);
+            }
+        }
+        return milks;
+    }
+    public List<Milk> findMilkByManufacturer(String manufacturer){
+        List<Milk> milks = new ArrayList<>();
+        for (Milk milk: milkList){
+            if (milk.getManufacturer().equals(manufacturer)){
+                milks.add(milk);
+            }
+        }
+        return milks;
+    }
+    public List<Clothes> findClothesByCategory(String category){
+        List<Clothes> clothess = new ArrayList<>();
+        for (Clothes clothes: clothesList){
+            if (clothes.getCategory().equals(category)){
+                clothesList.add(clothes);
+            }
+        }
+        return clothess;
+    }
+
 //    edit
     public void editMilk(String code,Milk milk){
         for (int i = 0; i < milkList.size(); i++) {
             if (milkList.get(i).getCode().equals(code)){
                 milkList.set(i, milk);
-                IO.writeFile(MILK_FILE, milkList);
+                io.writeFile(MILK_FILE, milkList);
                 break;
             }
         }
@@ -98,7 +127,7 @@ public class Worker {
         for (int i = 0; i < clothesList.size(); i++) {
             if (clothesList.get(i).getCode().equals(code)){
                 clothesList.set(i, clothes);
-                IO.writeFile(CLOTHES_FILE, clothesList);
+                io.writeFile(CLOTHES_FILE, clothesList);
                 break;
             }
         }
@@ -107,7 +136,7 @@ public class Worker {
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getPhoneNumber().equals(phoneNumber)){
                 customerList.set(i, customer);
-                IO.writeFile(CUSTOMER_FILE, customerList);
+                io.writeFile(CUSTOMER_FILE, customerList);
                 break;
             }
         }
@@ -116,19 +145,19 @@ public class Worker {
     public Milk removeMilk(String code) throws FileNotFoundException{
         Milk milk = findMilkByCode(code);
         milkList.remove(milk);
-        IO.writeFile(MILK_FILE, milkList);
+        io.writeFile(MILK_FILE, milkList);
         return milk;
     }
     public Clothes removeClothes(String code) throws FileNotFoundException{
         Clothes clothes = findClothesByCode(code);
         clothesList.remove(clothes);
-        IO.writeFile(CLOTHES_FILE, clothesList);
+        io.writeFile(CLOTHES_FILE, clothesList);
         return clothes;
     }
     public Customer removeCustomer(String phoneNumber) throws FileNotFoundException{
         Customer customer = findCustomerByPhoneNumber(phoneNumber);
         customerList.remove(customer);
-        IO.writeFile(CUSTOMER_FILE, customerList);
+        io.writeFile(CUSTOMER_FILE, customerList);
         return customer;
     }
 }

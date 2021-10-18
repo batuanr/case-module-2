@@ -4,9 +4,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IO {
+public class IO<T> {
+    private static IO io;
 
-    public static <T> void writeFile(String url, List<T> list){
+    private IO() {
+    }
+    public static IO getInstance(){
+        if (io == null){
+            io = new IO();
+        }
+        return io;
+    }
+
+    public  void writeFile(String url, List<T> list){
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(url);
@@ -18,7 +28,7 @@ public class IO {
             e.printStackTrace();
         }
     }
-    public static <T>List<T> readToFile(String url){
+    public  List<T> readToFile(String url){
         List<T> list = new ArrayList<>();
         File file = new File(url);
         if (!file.exists()){

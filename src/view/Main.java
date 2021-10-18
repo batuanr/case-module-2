@@ -17,6 +17,7 @@ public class Main {
             System.out.println("2  edit");
             System.out.println("3  remove");
             System.out.println("4  show");
+            System.out.println("4  find");
             System.out.println("0  exit");
             int choice = s.nextInt();
             switch (choice){
@@ -27,6 +28,7 @@ public class Main {
                         System.out.println(milk);
                     }
                     break;
+                case 0: return;
             }
         }
     }

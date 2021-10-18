@@ -2,7 +2,7 @@ package model.product;
 
 import java.io.Serializable;
 
-abstract class Product implements Serializable {
+public abstract class Product implements Serializable {
     private String code;
     private String name;
     private int price;
