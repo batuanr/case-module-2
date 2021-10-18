@@ -1,5 +1,6 @@
 package controller;
 
+import model.Order;
 import model.person.Customer;
 import model.product.Clothes;
 import model.product.Milk;
@@ -11,14 +12,17 @@ import java.util.List;
 
 public class Worker {
     private IO io = IO.getInstance();
+    private final String ORDER_FILE = "order.obj";
     private final String MILK_FILE = "milk.obj";
     private final String CLOTHES_FILE = "clothes.obj";
     private final String CUSTOMER_FILE = "customer.obj";
+    private List<Order> orderList = new ArrayList<>();
     private List<Milk> milkList = new ArrayList();
     private List<Clothes> clothesList = new ArrayList<>();
     private List<Customer> customerList = new ArrayList<>();
 
     public Worker() {
+        orderList = io.readToFile(ORDER_FILE);
         milkList = io.readToFile(MILK_FILE);
         clothesList = io.readToFile(CLOTHES_FILE);
         customerList = io.readToFile(CUSTOMER_FILE);
@@ -48,6 +52,10 @@ public class Worker {
         this.customerList = customerList;
     }
 //add
+    public void addOrder(Order order){
+        orderList.add(order);
+        io.writeFile(ORDER_FILE, orderList);
+    }
     public void addMilk(Milk milk){
         milkList.add(milk);
         io.writeFile(MILK_FILE, milkList);
@@ -111,6 +119,15 @@ public class Worker {
             }
         }
         return clothess;
+    }
+    public List<Order> findOrderByPhoneNumber(String phoneNumber){
+        List<Order> orders = new ArrayList<>();
+        for (Order order: orderList){
+            if (order.getCustomer().getPhoneNumber().equals(phoneNumber)){
+                orders.add(order);
+            }
+        }
+        return orders;
     }
 
 //    edit
