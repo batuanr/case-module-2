@@ -6,6 +6,7 @@ import model.product.Product;
 import java.time.LocalDate;
 
 public class Order {
+    private String code;
     private Customer customer;
     private Product product;
     private int orderQuantity;
@@ -15,7 +16,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(Customer customer, Product product, int orderQuantity, int total, LocalDate orderDay) {
+    public Order(String code, Customer customer, Product product, int orderQuantity, int total, LocalDate orderDay) {
+        this.code = code;
         this.customer = customer;
         this.product = product;
         this.orderQuantity = orderQuantity;
