@@ -25,6 +25,14 @@ public class Order {
         this.orderDay = orderDay;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public LocalDate getOrderDay() {
         return orderDay;
     }

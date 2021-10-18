@@ -50,4 +50,24 @@ public class MilkManage implements GeneralManage<Milk> {
         io.writeFile(MILK_FILE, milkList);
         return milk;
     }
+
+    public List<Milk> findMilkByCategory(String category){
+        List<Milk> milks = new ArrayList<>();
+        for (Milk milk: milkList){
+            if (milk.getCategory().equals(category)){
+                milks.add(milk);
+            }
+        }
+        return milks;
+    }
+
+    public List<Milk> findMilkByManufacturer(String manufacturer){
+        List<Milk> milks = new ArrayList<>();
+        for (Milk milk: milkList){
+            if (milk.getManufacturer().equals(manufacturer)){
+                milks.add(milk);
+            }
+        }
+        return milks;
+    }
 }

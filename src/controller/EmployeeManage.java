@@ -1,6 +1,5 @@
 package controller;
 
-import model.person.Customer;
 import model.person.Employee;
 import storage.IO;
 
