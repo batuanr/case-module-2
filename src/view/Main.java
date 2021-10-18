@@ -1,12 +1,13 @@
 package view;
 
-import controller.Worker;
+import controller.Boss;
+
 import model.product.Milk;
 
 import java.util.Scanner;
 
 public class Main {
-    static Worker worker = new Worker();
+    static Boss boss = new Boss("admin", "12345678");
     public static void main(String[] args) {
         run();
     }
@@ -24,7 +25,7 @@ public class Main {
                 case 1:add();
                 break;
                 case 4:
-                    for (Milk milk: worker.getMilkList()){
+                    for (Milk milk: boss.getMilkManage().getMilkList()){
                         System.out.println(milk);
                     }
                     break;
@@ -40,7 +41,7 @@ public class Main {
         System.out.println("3  ");
         int choice = s.nextInt();
         switch (choice){
-            case 1:worker.addMilk(getNewMilk());
+            case 1:boss.getMilkManage().add(getNewMilk());
             break;
         }
     }

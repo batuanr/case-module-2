@@ -16,6 +16,14 @@ public class MilkManage implements GeneralManage<Milk> {
         this.milkList = io.readToFile(MILK_FILE);
     }
 
+    public List<Milk> getMilkList() {
+        return milkList;
+    }
+
+    public void setMilkList(List<Milk> milkList) {
+        this.milkList = milkList;
+    }
+
     @Override
     public void add(Milk milk) {
         milkList.add(milk);
