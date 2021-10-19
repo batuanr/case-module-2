@@ -8,9 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerManage implements GeneralManage<Customer>{
+    private MoneyMethod moneyMethod = new OrderManage();
     private InputOutFile inputOutFile = InputOutFile.getInstance();
     private List<Customer> customerList = new ArrayList<>();
     private final String CUSTOMER_FILE = "customer.obj";
+
+    public List<Customer> getCustomerList() {
+        setTypeCustomer();
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
 
     public CustomerManage() {
         this.customerList = inputOutFile.readToFile(CUSTOMER_FILE);
@@ -23,13 +33,13 @@ public class CustomerManage implements GeneralManage<Customer>{
     }
 
     @Override
-    public Customer find(String phoneNumber) throws FileNotFoundException {
+    public Customer find(String phoneNumber)  {
         for (Customer customer: customerList){
             if (customer.getPhoneNumber().equals(phoneNumber)){
                 return customer;
             }
         }
-        throw new FileNotFoundException();
+        return null;
     }
 
 
@@ -50,5 +60,25 @@ public class CustomerManage implements GeneralManage<Customer>{
         customerList.remove(customer);
         inputOutFile.writeFile(CUSTOMER_FILE, customerList);
         return customer;
+    }
+    public void setTypeCustomer(){
+        for (Customer customer: customerList){
+            if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 20000000){
+                customer.setType("kim cương");
+            }
+            else{
+                if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 10000000){
+                    customer.setType("Vàng");
+                }
+                else{
+                    if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 5000000){
+                        customer.setType("Bạc");
+                    }
+                    else{
+                        customer.setType("Đồng");
+                    }
+                }
+            }
+        }
     }
 }

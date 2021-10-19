@@ -1,11 +1,10 @@
 package model.person;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public abstract class Person implements Serializable {
     private String name;
-    private LocalDate birthDate;
+    private String birthDay;
     private String gender;
     private String address;
     private String phoneNumber;
@@ -13,9 +12,9 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String name, LocalDate birthDate, String gender, String address, String phoneNumber) {
+    public Person(String name, String birthDay, String gender, String address, String phoneNumber) {
         this.name = name;
-        this.birthDate = birthDate;
+        this.birthDay = birthDay;
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -37,12 +36,12 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public String getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getGender() {

@@ -1,13 +1,14 @@
 package controller;
 
 import model.Order;
+import model.person.Customer;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderManage implements GeneralManage<Order> {
+public class OrderManage implements GeneralManage<Order>, MoneyMethod{
     private InputOutFile inputOutFile = InputOutFile.getInstance();
     private final String ORDER_FILE = "order.obj";
     private List<Order> orderList = new ArrayList<>();
@@ -31,8 +32,17 @@ public class OrderManage implements GeneralManage<Order> {
         }
         throw new FileNotFoundException();
     }
+    public List<Order> findOrderOneMonth(int month){
+        List<Order> orders = new ArrayList<>();
+        for (Order order: orderList){
+            if (order.getOrderDay().getMonth().equals(month)){
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
 
-    public List<Order> findOrder(String phoneNumber){
+    public List<Order> findOrderOfPeople(String phoneNumber){
         List<Order> orders = new ArrayList<>();
         for (Order order: orderList){
             if (order.getCustomer().getPhoneNumber().equals(phoneNumber)){
@@ -59,5 +69,19 @@ public class OrderManage implements GeneralManage<Order> {
         orderList.remove(order);
         inputOutFile.writeFile(ORDER_FILE, orderList);
         return order;
+    }
+    public int totalMoneyOneMonth (int month){
+        int total = 0;
+        for (Order order: findOrderOneMonth(month)){
+            total += order.getTotal();
+        }
+        return total;
+    }
+    public int totalMoneyOnePeople(String phoneNumber){
+        int total = 0;
+        for (Order order: findOrderOfPeople(phoneNumber)){
+            total += order.getTotal();
+        }
+        return total;
     }
 }

@@ -11,11 +11,12 @@ public class Payroll {
     public Payroll() {
     }
 
-    public Payroll(String code, Employee employee, int salary, int month) {
+    public Payroll(String code, Employee employee, int month, int bonus, int fine) {
         this.code = code;
         this.employee = employee;
-        this.salary = salary;
         this.month = month;
+        this.employee.setFine(fine);
+        this.employee.setBonus(bonus);
     }
 
     public String getCode() {
@@ -35,12 +36,11 @@ public class Payroll {
     }
 
     public int getSalary() {
+        salary = employee.getHardSalary() + employee.getBonus() - employee.getFine();
         return salary;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
+
 
     public int getMonth() {
         return month;
@@ -50,12 +50,17 @@ public class Payroll {
         this.month = month;
     }
 
+
+
     @Override
     public String toString() {
         return "Payroll{" +
                 "code='" + code + '\'' +
                 ", employee=" + employee +
-                ", salary=" + salary +
+                "lương cứng " + employee.getHardSalary() +
+                " thưởng : " + employee.getBonus() +
+                " phạt: " + employee.getFine() +
+                ", salary=" + getSalary() +
                 ", month=" + month +
                 '}';
     }

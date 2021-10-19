@@ -4,18 +4,26 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Employee extends Person implements Serializable {
-    private int salary;
     private int hardSalary;
     private int bonus;
     private String password;
+    private int fine;
 
     public Employee() {
     }
 
-    public Employee(String name, LocalDate birthDate, String gender, String address, String phoneNumber, int hardSalary) {
-        super(name, birthDate, gender, address, phoneNumber);
+    public Employee(String name, String birthDay, String gender, String address, String phoneNumber, int hardSalary) {
+        super(name, birthDay, gender, address, phoneNumber);
         this.hardSalary = hardSalary;
         this.password = "12345678";
+    }
+
+    public int getFine() {
+        return fine;
+    }
+
+    public void setFine(int fine) {
+        this.fine = fine;
     }
 
     public String getPassword() {
@@ -26,13 +34,6 @@ public class Employee extends Person implements Serializable {
         this.password = password;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 
     public int getHardSalary() {
         return hardSalary;

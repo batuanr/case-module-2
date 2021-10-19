@@ -20,6 +20,8 @@ public abstract class Product implements Serializable {
         this.quantity = quantity;
     }
 
+
+
     public String getCode() {
         return code;
     }

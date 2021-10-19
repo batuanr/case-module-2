@@ -10,9 +10,8 @@ public class Customer extends Person implements Serializable {
     public Customer() {
     }
 
-    public Customer(String name, LocalDate birthDate, String gender, String address, String phoneNumber, String type, String id) {
+    public Customer(String name, String birthDate, String gender, String address, String phoneNumber, String id) {
         super(name, birthDate, gender, address, phoneNumber);
-        this.type = type;
         this.id = id;
     }
 

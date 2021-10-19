@@ -1,17 +1,18 @@
 package view;
 
 import controller.*;
-
 import model.product.Milk;
 
 import java.util.Scanner;
 
 public class Main {
-    private static BossManage bossManage = new BossManage();
-    private static ClothesManage clothesManage = new ClothesManage();
-    private static EmployeeManage employeeManage = new EmployeeManage();
-    private static MilkManage milkManage = new MilkManage();
-    private static OrderManage orderManage = new OrderManage();
+    static NewObject newObject = new NewObject();
+    private static final BossManage bossManage = new BossManage();
+    private static final ClothesManage clothesManage = new ClothesManage();
+    private static final EmployeeManage employeeManage = new EmployeeManage();
+    private static final ProductManage productManage = new ProductManage();
+    private static final OrderManage orderManage = new OrderManage();
+    private  static final PayrollManage payrollManage = new PayrollManage();
 
     public static void main(String[] args) {
 
@@ -32,7 +33,7 @@ public class Main {
                 case 1:add();
                 break;
                 case 4:
-                    for (Milk milk: milkManage.getMilkList()){
+                    for (Milk milk: productManage.getMlkList()){
                         System.out.println(milk);
                     }
                     break;
@@ -48,26 +49,27 @@ public class Main {
         System.out.println("3  ");
         int choice = s.nextInt();
         switch (choice){
-            case 1:milkManage.add(getNewMilk());
+            case 1:
+                productManage.add(newObject.getNewMilk());
             break;
         }
     }
-    static Milk getNewMilk(){
-        Scanner s = new Scanner(System.in);
-        Scanner n = new Scanner(System.in);
-        System.out.println("code");
-        String code = s.nextLine();
-        System.out.println("name");
-        String name = s.nextLine();
-        System.out.println("price");
-        int price = n.nextInt();
-        System.out.println("category");
-        String category = s.nextLine();
-        System.out.println("quantity");
-        int quantity = n.nextInt();
-        System.out.println("manufacturer");
-        String manufacturer = s.nextLine();
-
-        return new Milk(code, name, price, category, quantity, manufacturer);
-    }
+//    static Milk getNewMilk(){
+//        Scanner s = new Scanner(System.in);
+//        Scanner n = new Scanner(System.in);
+//        System.out.println("code");
+//        String code = s.nextLine();
+//        System.out.println("name");
+//        String name = s.nextLine();
+//        System.out.println("price");
+//        int price = n.nextInt();
+//        System.out.println("category");
+//        String category = s.nextLine();
+//        System.out.println("quantity");
+//        int quantity = n.nextInt();
+//        System.out.println("manufacturer");
+//        String manufacturer = s.nextLine();
+//
+//        return new Milk(code, name, price, category, quantity, manufacturer);
+//    }
 }
