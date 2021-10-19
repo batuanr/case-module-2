@@ -19,6 +19,13 @@ public class ProductManage implements GeneralManage<Product> {
         this.productList = inputOutFile.readToFile(PRODUCT_FILE);
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     @Override
     public void add(Product product) {
@@ -65,7 +72,7 @@ public class ProductManage implements GeneralManage<Product> {
         return products;
     }
 
-    public List<Product> findMilkByManufacturer(String manufacturer){
+    public List<Product> findByManufacturer(String manufacturer){
         List<Product> products = new ArrayList<>();
         for (Product product: productList){
             if (product instanceof Milk && ((Milk) product).getManufacturer().equals(manufacturer)){

@@ -1,7 +1,6 @@
 package controller;
 
 import model.Order;
-import model.person.Customer;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
