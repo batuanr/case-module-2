@@ -1,8 +1,9 @@
 package model.person;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee extends Person{
+public class Employee extends Person implements Serializable {
     private int salary;
     private int hardSalary;
     private int bonus;
@@ -11,9 +12,9 @@ public class Employee extends Person{
     public Employee() {
     }
 
-    public Employee(String name, LocalDate birthDate, String gender, String address, String phoneNumber, int salary) {
+    public Employee(String name, LocalDate birthDate, String gender, String address, String phoneNumber, int hardSalary) {
         super(name, birthDate, gender, address, phoneNumber);
-        this.salary = salary;
+        this.hardSalary = hardSalary;
         this.password = "12345678";
     }
 
@@ -47,5 +48,10 @@ public class Employee extends Person{
 
     public void setBonus(int bonus) {
         this.bonus = bonus;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee: " + super.toString();
     }
 }

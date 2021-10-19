@@ -20,4 +20,11 @@ public class Clothes extends Product implements Serializable {
     public void setSize(String size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return "Clothes{" + super.toString() +
+                "size='" + size + '\'' +
+                '}';
+    }
 }

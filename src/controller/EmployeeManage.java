@@ -1,25 +1,33 @@
 package controller;
 
 import model.person.Employee;
-import storage.IO;
+import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeManage implements GeneralManage<Employee> {
-    private IO io = IO.getInstance();
+    private InputOutFile inputOutFile = InputOutFile.getInstance();
     private final String EMPLOYEE_FILE = "employee.obj";
     private List<Employee> employeeList = new ArrayList<>();
 
     public EmployeeManage() {
-        this.employeeList = io.readToFile(EMPLOYEE_FILE);
+        this.employeeList = inputOutFile.readToFile(EMPLOYEE_FILE);
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     @Override
     public void add(Employee employee) {
         employeeList.add(employee);
-        io.writeFile(EMPLOYEE_FILE, employeeList);
+        inputOutFile.writeFile(EMPLOYEE_FILE, employeeList);
     }
 
     @Override
@@ -37,7 +45,7 @@ public class EmployeeManage implements GeneralManage<Employee> {
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getPhoneNumber().equals(phoneNumber)){
                 employeeList.set(i, employee);
-                io.writeFile(EMPLOYEE_FILE, employeeList);
+                inputOutFile.writeFile(EMPLOYEE_FILE, employeeList);
                 break;
             }
         }
@@ -47,7 +55,8 @@ public class EmployeeManage implements GeneralManage<Employee> {
     public Employee remove(String phoneNumber) throws FileNotFoundException {
         Employee employee = find(phoneNumber);
         employeeList.remove(employee);
-        io.writeFile(EMPLOYEE_FILE, employeeList);
+        inputOutFile.writeFile(EMPLOYEE_FILE, employeeList);
         return employee;
     }
+
 }

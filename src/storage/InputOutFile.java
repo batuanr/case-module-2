@@ -4,16 +4,16 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IO<T> {
-    private static IO io;
+public class InputOutFile<T> {
+    private static InputOutFile inputOutFile;
 
-    private IO() {
+    private InputOutFile() {
     }
-    public static IO getInstance(){
-        if (io == null){
-            io = new IO();
+    public static InputOutFile getInstance(){
+        if (inputOutFile == null){
+            inputOutFile = new InputOutFile();
         }
-        return io;
+        return inputOutFile;
     }
 
     public  void writeFile(String url, List<T> list){

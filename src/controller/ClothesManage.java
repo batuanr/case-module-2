@@ -1,25 +1,25 @@
 package controller;
 
 import model.product.Clothes;
-import storage.IO;
+import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClothesManage implements GeneralManage<Clothes> {
-    private IO io = IO.getInstance();
+    private InputOutFile inputOutFile = InputOutFile.getInstance();
     private final String CLOTHES_FILE = "clothes.obj";
     private List<Clothes> clothesList = new ArrayList<>();
 
     public ClothesManage() {
-        this.clothesList = io.readToFile(CLOTHES_FILE);
+        this.clothesList = inputOutFile.readToFile(CLOTHES_FILE);
     }
 
     @Override
     public void add(Clothes clothes) {
        clothesList.add(clothes);
-       io.writeFile(CLOTHES_FILE, clothesList);
+       inputOutFile.writeFile(CLOTHES_FILE, clothesList);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ClothesManage implements GeneralManage<Clothes> {
         for (int i = 0; i < clothesList.size(); i++) {
             if (clothesList.get(i).getCode().equals(code)){
                 clothesList.set(i, clothes);
-                io.writeFile(CLOTHES_FILE, clothesList);
+                inputOutFile.writeFile(CLOTHES_FILE, clothesList);
                 break;
             }
         }
@@ -47,7 +47,7 @@ public class ClothesManage implements GeneralManage<Clothes> {
     public Clothes remove(String code) throws FileNotFoundException {
         Clothes clothes = find(code);
         clothesList.remove(clothes);
-        io.writeFile(CLOTHES_FILE, clothesList);
+        inputOutFile.writeFile(CLOTHES_FILE, clothesList);
         return clothes;
     }
 }
