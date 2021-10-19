@@ -12,6 +12,14 @@ public class PayrollManage implements GeneralManage<Payroll> {
     private List<Payroll> payrollList = new ArrayList<>();
     private final String PAYROLL_FILE = "payroll.obj";
 
+    public List<Payroll> getPayrollList() {
+        return payrollList;
+    }
+
+    public void setPayrollList(List<Payroll> payrollList) {
+        this.payrollList = payrollList;
+    }
+
     @Override
     public void add(Payroll payroll) {
         payrollList.add(payroll);

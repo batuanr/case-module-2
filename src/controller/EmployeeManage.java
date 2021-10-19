@@ -23,6 +23,15 @@ public class EmployeeManage implements GeneralManage<Employee> {
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
+    public void editPassword(String phoneNumber, String password){
+        for (Employee employee: employeeList){
+            if (employee.getPhoneNumber().equals(phoneNumber)){
+                employee.setPassword(password);
+                inputOutFile.writeFile(EMPLOYEE_FILE, employeeList);
+                break;
+            }
+        }
+    }
 
     @Override
     public void add(Employee employee) {

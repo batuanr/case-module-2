@@ -1,166 +1,160 @@
 package view;
 
-import controller.*;
+import controller.EmployeeManage;
+import controller.PayrollManage;
 import model.Payroll;
-import model.product.Milk;
-import model.product.Product;
+import model.person.Customer;
+import model.person.Employee;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class EmployeeMain {
-     static Scanner s = new Scanner(System.in);
-    static Scanner n = new Scanner(System.in);
-    private static NewObject newObject = new NewObject();
-    private static final BossManage bossManage = new BossManage();
-    private static final ClothesManage clothesManage = new ClothesManage();
-    private static final EmployeeManage employeeManage = new EmployeeManage();
-    private static final ProductManage productManage = new ProductManage();
-    private static final OrderManage orderManage = new OrderManage();
-    private  static final PayrollManage payrollManage = new PayrollManage();
+    Scanner s = new Scanner(System.in);
+    Scanner n = new Scanner(System.in);
+    private PayrollManage payrollManage = new PayrollManage();
+    private EmployeeManage employeeManage = new EmployeeManage();
 
-    public static void main(String[] args) {
-        run();
+    public EmployeeManage getEmployeeManage() {
+        return employeeManage;
     }
-    public static void run(){
-        while (true){
-            System.out.println("sản phẩm");
-            System.out.println("khách hàng");
-            System.out.println("nhân viên");
-            System.out.println("Doanh thu");
-            System.out.println("");
-            int choice = n.nextInt();
-            switch (choice){
-                case 1:product();
-                break;
-            }
-        }
 
+    public void setEmployeeManage(EmployeeManage employeeManage) {
+        this.employeeManage = employeeManage;
     }
-    public static void product(){
-        System.out.println("1 thêm");
-        System.out.println("2 Sửa");
-        System.out.println("3 Xóa");
-        System.out.println("4 tìm kiếm");
-        System.out.println("5 show all sản phẩm");
-        int choice = n.nextInt();
-        switch (choice){
-            case 1:addNewProduct();
-            break;
-            case 2:editProduct();
-            break;
-            case 3:removeProduct();
-                break;
-            case 4:search();
-                break;
-            case 5:showAllProduct();
-            break;
 
-        }
-
-    }
-    public static void customer(){
-        System.out.println("thêm");
-        System.out.println("Sửa");
-        System.out.println("Xóa");
-        System.out.println("Tìm kiếm");
-        System.out.println("hiển thị toàn bộ khách hàng");
-    }
-    public static void employee(){
-        System.out.println("1 thêm");
+    public void employee(){
+        System.out.println("1 thêm nhân viên");
         System.out.println("2 Sửa");
         System.out.println("3 Xóa");
         System.out.println("4 Tìm kiếm");
-        System.out.println("5 Tìm kiếm theo danh mục");
-        System.out.println("6 xem thông tin");
-        System.out.println("7 tính lương");
-    }
-    public static void getRevenue(){
-        System.out.println("Doanh thu tháng này");
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-    }
-    public static void addNewProduct(){
-        System.out.println("thêm sữa");
-        System.out.println("thêm quần áo");
+        System.out.println("5 all nhân viên");
+        System.out.println("6 add phiếu lương");
+        System.out.println("7 sửa phiếu lương");
+        System.out.println("8 xóa phiếu lương");
+        System.out.println("9 bảng lương tháng");
         int choice = n.nextInt();
         switch (choice){
-            case 1:productManage.add(newObject.getNewMilk());
-                break;
-            case 2:productManage.add(newObject.getNewClothes());
-                break;
+            case 1:addNewEmployee();
+            break;
+            case 2:editEmployee();
+            break;
+            case 3:removeEmployee();
+            break;
+            case 4:search();
+            break;
+            case 5:showAllEmployee();
+            break;
+            case 6:addPayroll();
+            break;
+            case 7:editPayroll();
+            break;
+            case 8:removePayroll();
+            break;
+            case 9:showAllSalaryOneMonth();
+            break;
         }
     }
-    public static void editProduct(){
-        System.out.println("Nhập code");
-        String code = s.nextLine();
+    public void addNewEmployee(){
+        employeeManage.add(getNewEmployee());
+    }
+    public void editEmployee(){
+        System.out.println("Nhập sdt");
+        String phoneNumber = s.nextLine();
+        employeeManage.edit(phoneNumber, getNewEmployee());
+    }
+    public void removeEmployee(){
+        System.out.println("Nhập sdt");
+        String phoneNumber = s.nextLine();
         try {
-            if(productManage.find(code) instanceof Milk){
-                productManage.edit(code, newObject.getNewMilk());
-            }
-            else {
-                productManage.edit(code, newObject.getNewClothes());
-            }
+            employeeManage.remove(phoneNumber);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-    public static void removeProduct(){
-        System.out.println("Nhập code");
-        String code = s.nextLine();
+    public void search(){
+        System.out.println("Nhập sdt");
+        String phoneNumber = s.nextLine();
         try {
-            productManage.remove(code);
+            employeeManage.find(phoneNumber);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-    public static void search(){
-        System.out.println("Nhập code");
-        String code = s.nextLine();
+    public void showAllEmployee(){
+        for (Employee employee: employeeManage.getEmployeeList()){
+            System.out.println(employee);
+        }
+    }
+    public void addPayroll(){
         try {
-            System.out.println(productManage.find(code));;
+            payrollManage.add(getNewPayroll());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-    public static void searchByCategory(){
-        System.out.println("Sữa 6 tháng đến 1,5 tuổi");
-        System.out.println("Sữa 1,5 tháng đến 3 tuổi");
-        System.out.println("Sữa 3 tháng đến 5 tuổi");
-        System.out.println("Sữa 5 tháng đến 10 tuổi");
-        System.out.println("áo quần nam");
-        System.out.println("áo quần nữ");
-        System.out.println("dày dép nữ");
-        System.out.println("dày dép nam");
-        int choice = n.nextInt();
-        switch (choice){
-            case 1:
-                System.out.println(productManage.findByCategory("1"));
-                break;
-            case 2:
-                System.out.println(productManage.findByCategory("2"));
-                break;
-            case 3:
-                System.out.println(productManage.findByCategory("3"));
-                break;
-            case 4:
-                System.out.println(productManage.findByCategory("4"));
-                break;
-            case 5:
-                System.out.println(productManage.findByCategory("5"));
-                break;
-            case 6:
-                System.out.println(productManage.findByCategory("6"));
-                break;
+    public void editPayroll(){
+        System.out.println("Nhập code");
+        String code = s.nextLine();
+        try {
+            payrollManage.edit(code, getNewPayroll());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
-    public static void showAllProduct(){
-        for (Product product: productManage.getProductList()){
-            System.out.println(product);
+    public void removePayroll(){
+        System.out.println("Nhập code");
+        String code = s.nextLine();
+        try {
+            payrollManage.remove(code);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
+    public void showAllSalaryOneMonth(){
+        System.out.println("enter month");
+        int month = n.nextInt();
+        System.out.println(payrollManage.getPayrollOneMonth(month));
+    }
+    public Payroll getNewPayroll() throws FileNotFoundException {
+        System.out.println("Nhập code");
+        String code = s.nextLine();
+        System.out.println("Nhập phone number");
+        String phoneNumber = s.nextLine();
+        System.out.println("Month");
+        int month = n.nextInt();
+        System.out.println("Bonus");
+        int bonus = n.nextInt();
+        System.out.println("Fine");
+        int fine = n.nextInt();
 
+        Employee employee = employeeManage.find(phoneNumber);
+
+        return new Payroll(code, employee, month, bonus, fine);
+
+    }
+    public void changePassword(){
+        System.out.println("enter phone number");
+        String phoneNumber = s.nextLine();
+        System.out.println("new password");
+        String password = s.nextLine();
+        employeeManage.editPassword(phoneNumber, password);
+    }
+    public Employee getNewEmployee(){
+        System.out.println("Name");
+        String name = s.nextLine();
+        System.out.println("birthDay");
+        String birthDay = s.nextLine();
+        System.out.println("Gender");
+        String gender = s.nextLine();
+        System.out.println("Address");
+        String address = s.nextLine();
+        System.out.println("Phone number");
+        String phoneNumber = s.nextLine();
+        System.out.println("hardSalary");
+        int hardSalary = n.nextInt();
+
+        return new Employee(name, birthDay, gender, address, phoneNumber, hardSalary);
+    }
 
 }
