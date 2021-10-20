@@ -65,23 +65,22 @@ public class Order implements Serializable {
         this.orderQuantity = orderQuantity;
     }
 
-    public int getTotal() {
+    public int getTotal() throws RuntimeException {
         if (checkQuantity()){
             total = product.getPrice() * orderQuantity;
-//            product.setQuantity(product.getQuantity() - orderQuantity);
-//            if(customer.getType().equals("kim cương")){
-//                total = total * 90/100;
-//            }
-//            else {
-//                if(customer.getType().equals("Vàng")){
-//                    total = total * 95/100;
-//                }
-//                else{
-//                    if(customer.getType().equals("Bạc")){
-//                        total = total*98/100;
-//                    }
-//                }
-//            }
+            if(customer.getType().equals("kim cương")){
+                total = total * 90/100;
+            }
+            else {
+                if(customer.getType().equals("Vàng")){
+                    total = total * 95/100;
+                }
+                else{
+                    if(customer.getType().equals("Bạc")){
+                        total = total*98/100;
+                    }
+                }
+            }
 
             return total;
         }

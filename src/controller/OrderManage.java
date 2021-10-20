@@ -1,10 +1,10 @@
 package controller;
 
 import model.Order;
-import model.product.Product;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,11 @@ public class OrderManage implements GeneralManage<Order>{
 
 
     public List<Order> getOrderList() {
-        return orderList;
+        return inputOutFile.readToFile(ORDER_FILE);
+    }
+
+    public OrderManage() {
+        orderList = inputOutFile.readToFile(ORDER_FILE);
     }
 
     public void setOrderList(List<Order> orderList) {
@@ -39,8 +43,10 @@ public class OrderManage implements GeneralManage<Order>{
     }
     public List<Order> findOrderOneMonth(int month){
         List<Order> orders = new ArrayList<>();
-        for (Order order: orderList){
-            if (order.getOrderDay().getMonth().equals(month)){
+
+        for (Order order: getOrderList()){
+            int  getMonth = order.getOrderDay().getMonthValue();
+            if (getMonth == month){
                 orders.add(order);
             }
         }

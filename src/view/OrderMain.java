@@ -2,13 +2,12 @@ package view;
 
 import controller.*;
 import model.Order;
-import model.Payroll;
 import model.person.Customer;
-import model.person.Employee;
 import model.product.Product;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
+import java.time.Month;
 import java.util.List;
 import java.util.Scanner;
 
@@ -58,6 +57,7 @@ public class OrderMain {
 //                }
 //            }
             List<Product> products = productManage.getProductList();
+
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
                 if(product.getCode().equals(order.getProduct().getCode())){
@@ -67,14 +67,17 @@ public class OrderMain {
                     break;
                 }
             }
-
-            for (Customer customer: customerManage.getCustomerList()){
-                if(order.getCustomer().getPhoneNumber().equals(customer.getPhoneNumber())){
-                    customer.setTotalMoney(customer.getTotalMoney() + order.getTotal());
+            List<Customer> customers = customerManage.getCustomerList();
+            for (int i = 0; i < customers.size(); i++){
+                Customer customer = customers.get(i);
+                if(customer.getPhoneNumber().equals(order.getCustomer().getPhoneNumber())){
+                    int totalMoney = customer.getTotalMoney() + order.getTotal();
+                    customer.setTotalMoney(totalMoney);
+                    inputOutFile.writeFile(customerManage.getCUSTOMER_FILE(), customers);
                 }
             }
 
-            inputOutFile.writeFile(customerManage.getCUSTOMER_FILE(), customerManage.getCustomerList());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
