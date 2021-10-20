@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.FileNotFoundException;
-import java.util.List;
+
 
 public interface GeneralManage<T> {
     void add(T t);

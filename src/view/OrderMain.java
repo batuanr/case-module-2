@@ -40,7 +40,7 @@ public class OrderMain {
             break;
             case 5:getMoneyOneMonth();
             break;
-            case 6:allOrder();
+            case 6:getAllOrder();
             break;
         }
 
@@ -64,7 +64,9 @@ public class OrderMain {
             List<Customer> customers = customerManage.getCustomerList();
             for (int i = 0; i < customers.size(); i++){
                 Customer customer = customers.get(i);
-                if(customer.getPhoneNumber().equals(order.getCustomer().getPhoneNumber())){
+                String phoneNumberOfCustomer = customer.getPhoneNumber();
+                String phoneNumberOfOrder = order.getCustomer().getPhoneNumber();
+                if(phoneNumberOfCustomer.equals(phoneNumberOfOrder)){
                     int totalMoney = customer.getTotalMoney() + order.getTotal();
                     customer.setTotalMoney(totalMoney);
                     inputOutFile.writeFile(customerManage.getCUSTOMER_FILE(), customers);
@@ -94,15 +96,6 @@ public class OrderMain {
             e.printStackTrace();
         }
     }
-    public void ShowOrder(){
-        System.out.println("Code");
-        String code = s.nextLine();
-        try {
-            orderManage.find(code);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
     public void findOrder(){
         System.out.println("Tìm 1 order");
         System.out.println("order của 1 người");
@@ -121,23 +114,27 @@ public class OrderMain {
             case 2:
                 System.out.println("enter phoneNumber");
                 String phoneNumber = n.nextLine();
-                for (Order order: orderManage.findOrderOfPeople(phoneNumber)){
+                List<Order> orders = orderManage.findOrderOfPeople(phoneNumber);
+                for (Order order: orders){
                     System.out.println(order);
                 }
                 break;
             case 3:
                 System.out.println("enter month");
                 int month = n.nextInt();
-                for (Order order: orderManage.findOrderOneMonth(month)){
+                orders = orderManage.findOrderOneMonth(month);
+                for (Order order: orders){
                     System.out.println(order);
                 }
+                break;
         }
 
     }
     public void getMoneyOneMonth(){
         System.out.println("enter month");
         int month = n.nextInt();
-        System.out.println(orderManage.totalMoneyOneMonth(month));;
+        int totalMoney = orderManage.totalMoneyOneMonth(month);
+        System.out.println("Doanh thu tháng " + month + " là: " + totalMoney + "VND");
     }
     public Order getNewOrder() throws FileNotFoundException {
         System.out.println("Code");
@@ -155,8 +152,9 @@ public class OrderMain {
 
         return new Order(code, customer, product, quantity);
     }
-    public void allOrder(){
-        for (Order order: orderManage.getOrderList()){
+    public void getAllOrder(){
+        List<Order> orders = orderManage.getOrderList();
+        for (Order order: orders){
             System.out.println(order);
         }
     }

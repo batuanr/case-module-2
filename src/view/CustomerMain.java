@@ -25,7 +25,7 @@ public class CustomerMain {
                 break;
             case 3:removeCustomer();
                 break;
-            case 4:search();
+            case 4:find();
                 break;
             case 5:showAll();
                 break;
@@ -48,10 +48,11 @@ public class CustomerMain {
             e.printStackTrace();
         }
     }
-    public void search(){
+    public void find(){
         System.out.println("Nhập phone number");
         String phoneNumber = s.nextLine();
-        System.out.println(customerManage.find(phoneNumber));;
+        Customer customer = customerManage.find(phoneNumber);
+        System.out.println(customer);
     }
     public void showAll(){
         for (Customer customer: customerManage.getCustomerList()){

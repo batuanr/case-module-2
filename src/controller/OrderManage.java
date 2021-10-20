@@ -4,7 +4,6 @@ import model.Order;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +44,8 @@ public class OrderManage implements GeneralManage<Order>{
         List<Order> orders = new ArrayList<>();
 
         for (Order order: getOrderList()){
-            int  getMonth = order.getOrderDay().getMonthValue();
-            if (getMonth == month){
+            int  orderMonth = order.getOrderDay().getMonthValue();
+            if (orderMonth == month){
                 orders.add(order);
             }
         }
@@ -84,13 +83,6 @@ public class OrderManage implements GeneralManage<Order>{
     public int totalMoneyOneMonth (int month){
         int total = 0;
         for (Order order: findOrderOneMonth(month)){
-            total += order.getTotal();
-        }
-        return total;
-    }
-    public int totalMoneyOnePeople(String phoneNumber){
-        int total = 0;
-        for (Order order: findOrderOfPeople(phoneNumber)){
             total += order.getTotal();
         }
         return total;

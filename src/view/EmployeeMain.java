@@ -7,6 +7,7 @@ import model.person.Customer;
 import model.person.Employee;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeMain {
@@ -51,7 +52,7 @@ public class EmployeeMain {
             break;
             case 8:removePayroll();
             break;
-            case 9:showAllSalaryOneMonth();
+            case 9:getAllPayrollOneMonth();
             break;
         }
     }
@@ -111,10 +112,14 @@ public class EmployeeMain {
             e.printStackTrace();
         }
     }
-    public void showAllSalaryOneMonth(){
+    public void getAllPayrollOneMonth(){
         System.out.println("enter month");
         int month = n.nextInt();
-        System.out.println(payrollManage.getPayrollOneMonth(month));
+        List<Payroll> payrolls = payrollManage.getPayrollOneMonth(month);
+        for (Payroll payroll: payrolls){
+            System.out.println(payroll);
+        }
+
     }
     public Payroll getNewPayroll() throws FileNotFoundException {
         System.out.println("Nhập code");

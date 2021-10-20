@@ -1,9 +1,11 @@
 package model.person;
 
+import model.CustomerType;
+
 import java.io.Serializable;
 
 public class Customer extends Person implements Serializable {
-    private String type;
+    private CustomerType type;
     private String id;
     private int totalMoney;
 
@@ -21,6 +23,7 @@ public class Customer extends Person implements Serializable {
     public Customer(String name, String birthDate, String gender, String address, String phoneNumber, String id) {
         super(name, birthDate, gender, address, phoneNumber);
         this.id = id;
+        type = CustomerType.PLAIN;
     }
 
     public String getId() {
@@ -31,11 +34,11 @@ public class Customer extends Person implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public CustomerType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(CustomerType type) {
         this.type = type;
     }
 
@@ -45,7 +48,7 @@ public class Customer extends Person implements Serializable {
                 ", birthDate: " + super.getBirthDay() +
                 ", Gender: " + super.getGender() +
                 ", Phone Number: " + super.getPhoneNumber() +
-                ", type:'" + type + '\'' +
-                ", id:'" + id + '\'' + totalMoney;
+                ", type:'" + getType() + '\'' +
+                ", id:'" + id + '\'' + " Total money: " + totalMoney;
     }
 }

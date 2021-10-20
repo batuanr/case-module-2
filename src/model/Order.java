@@ -68,15 +68,15 @@ public class Order implements Serializable {
     public int getTotal() throws RuntimeException {
         if (checkQuantity()){
             total = product.getPrice() * orderQuantity;
-            if(customer.getType().equals("kim cương")){
+            if(customer.getType().equals(CustomerType.DIAMOND)){
                 total = total * 90/100;
             }
             else {
-                if(customer.getType().equals("Vàng")){
+                if(customer.getType().equals(CustomerType.GOLD)){
                     total = total * 95/100;
                 }
                 else{
-                    if(customer.getType().equals("Bạc")){
+                    if(customer.getType().equals(CustomerType.SILVER)){
                         total = total*98/100;
                     }
                 }
@@ -97,11 +97,11 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "customer=" + customer.getName() +
-                ", product=" + product.getName() +
-                ", orderQuantity=" + orderQuantity +
-                ", total=" + getTotal() +
-                ", orderDay=" + orderDay +
+                "customer: " + customer.getName() +
+                ", product: " + product.getName() +
+                ", orderQuantity: " + orderQuantity +
+                ", total: " + getTotal() +
+                ", orderDay: " + orderDay +
                 '}';
     }
 }

@@ -67,7 +67,4 @@ public class EmployeeManage implements GeneralManage<Employee> {
         inputOutFile.writeFile(EMPLOYEE_FILE, employeeList);
         return employee;
     }
-    public void setBonus(int bonus){
-
-    }
 }

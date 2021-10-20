@@ -13,6 +13,8 @@ public class ProductMain {
     Scanner s = new Scanner(System.in);
     Scanner n = new Scanner(System.in);
     private ProductManage productManage = new ProductManage();
+    private List<Product> productsToUp = productManage.sortByPriceToUp();
+    private List<Product> productsToDown = productManage.sortByPriceToDown();
 
     public  void product(){
         System.out.println("1 thêm");
@@ -80,8 +82,8 @@ public class ProductMain {
         return new Clothes(code, name, price, category, quantity, size);
     }
     public void addNewProduct(){
-        System.out.println("thêm sữa");
-        System.out.println("thêm quần áo");
+        System.out.println("1 thêm sữa");
+        System.out.println("2 thêm quần áo");
         int choice = n.nextInt();
         switch (choice){
             case 1:productManage.add(getNewMilk());
@@ -128,18 +130,19 @@ public class ProductMain {
         System.out.println("Nhập code");
         String code = s.nextLine();
         try {
-            System.out.println(productManage.find(code));;
+            Product product = productManage.find(code);
+            System.out.println(product);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     public  void findByCategory(){
-        System.out.println("Sữa 6 tháng đến 1,5 tuổi");
-        System.out.println("Sữa 1,5 tháng đến 3 tuổi");
-        System.out.println("Sữa 3 tháng đến 5 tuổi");
-        System.out.println("Sữa 5 tháng đến 10 tuổi");
-        System.out.println("áo quần nam");
-        System.out.println("áo quần nữ");
+        System.out.println("1 Sữa 6 tháng đến 1,5 tuổi");
+        System.out.println("2 Sữa 1,5 tháng đến 3 tuổi");
+        System.out.println("3 Sữa 3 tháng đến 5 tuổi");
+        System.out.println("4 Sữa 5 tháng đến 10 tuổi");
+        System.out.println("5 áo quần bé trai");
+        System.out.println("6 áo quần bé gái");
         int choice = n.nextInt();
         switch (choice){
             case 1:
@@ -192,14 +195,14 @@ public class ProductMain {
         int choice = n.nextInt();
         switch (choice){
             case 1:
-                for (Product product: productManage.sortByPriceToUp()){
+                for (Product product: productsToUp){
                     if (product instanceof Milk){
                         System.out.println(product);
                     }
                 }
                 break;
             case 2:
-                for (Product product: productManage.sortByPriceToDown()){
+                for (Product product: productsToDown){
                     if (product instanceof Milk){
                         System.out.println(product);
                     }
@@ -213,14 +216,14 @@ public class ProductMain {
         int choice = n.nextInt();
         switch (choice){
             case 1:
-                for (Product product: productManage.sortByPriceToUp()){
+                for (Product product: productsToUp){
                     if (product instanceof Clothes){
                         System.out.println(product);
                     }
                 }
                 break;
             case 2:
-                for (Product product: productManage.sortByPriceToDown()){
+                for (Product product: productsToDown){
                     if (product instanceof Clothes){
                         System.out.println(product);
                     }

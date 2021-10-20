@@ -57,13 +57,13 @@ public class Payroll implements Serializable {
     @Override
     public String toString() {
         return "Payroll{" +
-                "code='" + code + '\'' +
+                "code:'" + code + '\'' +
                 ", Name: " + employee.getName() +
                 ", lương cứng " + employee.getHardSalary() +
                 ", thưởng : " + employee.getBonus() +
                 ", phạt: " + employee.getFine() +
-                ", salary=" + getSalary() +
-                ", month=" + month +
+                ", salary: " + getSalary() +
+                ", month " + month +
                 '}';
     }
 }

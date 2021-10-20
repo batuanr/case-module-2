@@ -1,5 +1,6 @@
 package controller;
 
+import model.CustomerType;
 import model.person.Customer;
 import storage.InputOutFile;
 
@@ -72,18 +73,18 @@ public class CustomerManage implements GeneralManage<Customer>{
     public void setTypeCustomer(){
         for (Customer customer: customerList){
             if (customer.getTotalMoney() > 20000000){
-                customer.setType("kim cương");
+                customer.setType(CustomerType.DIAMOND);
             }
             else{
                 if (customer.getTotalMoney() > 10000000){
-                    customer.setType("Vàng");
+                    customer.setType(CustomerType.GOLD);
                 }
                 else{
                     if (customer.getTotalMoney() > 5000000){
-                        customer.setType("Bạc");
+                        customer.setType(CustomerType.SILVER);
                     }
                     else{
-                        customer.setType("Đồng");
+                        customer.setType(CustomerType.PLAIN);
                     }
                 }
             }
