@@ -6,6 +6,7 @@ import model.product.Milk;
 import model.product.Product;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductMain {
@@ -18,21 +19,27 @@ public class ProductMain {
         System.out.println("2 Sửa");
         System.out.println("3 Xóa");
         System.out.println("4  Hiển thị theo giá");
-        System.out.println("4 tìm kiếm");
-        System.out.println("5 show all sản phẩm");
+        System.out.println("5 tìm kiếm");
+        System.out.println("6 show all sản phẩm");
+        System.out.println("7 Milk List");
+        System.out.println("8 Clothes List");
         int choice = n.nextInt();
         switch (choice){
             case 1:addNewProduct();
-                break;
+            break;
             case 2:editProduct();
-                break;
+            break;
             case 3:removeProduct();
-                break;
+            break;
             case 4:sort();
-                break;
-            case 5:showAllProduct();
-                break;
-            case 6:search();
+            break;
+            case 5:find();
+            break;
+            case 6:showAllProduct();
+            break;
+            case 7:getMilkList();
+            break;
+            case 8:getClothesList();
             break;
 
         }
@@ -106,7 +113,18 @@ public class ProductMain {
             e.printStackTrace();
         }
     }
-    public void search(){
+    public void find(){
+        System.out.println("1  Tìm theo mã sản phẩm");
+        System.out.println("2  Tìm theo danh mục");
+        int choice = n.nextInt();
+        switch (choice){
+            case 1: findByCode();
+            break;
+            case 2: findByCategory();
+            break;
+        }
+    }
+    public void findByCode(){
         System.out.println("Nhập code");
         String code = s.nextLine();
         try {
@@ -115,7 +133,7 @@ public class ProductMain {
             e.printStackTrace();
         }
     }
-    public  void searchByCategory(){
+    public  void findByCategory(){
         System.out.println("Sữa 6 tháng đến 1,5 tuổi");
         System.out.println("Sữa 1,5 tháng đến 3 tuổi");
         System.out.println("Sữa 3 tháng đến 5 tuổi");
@@ -149,19 +167,63 @@ public class ProductMain {
             System.out.println(product);
         }
     }
+    public List<Milk> getMilkList(){
+        List<Milk> milks = productManage.getMlkList();
+        return milks;
+    }
+    public List<Clothes> getClothesList(){
+        List<Clothes> clothesList =productManage.getClothesList();
+        return clothesList;
+    }
     public void sort(){
+        System.out.println("1  sữa");
+        System.out.println("1  quần áo");
+        int choice = n.nextInt();
+        switch (choice){
+            case 1:sortMilk();
+            break;
+            case 2:sortClothes();
+            break;
+        }
+    }
+    public void sortMilk(){
         System.out.println("1  tăng dần");
         System.out.println("2  giảm dần");
         int choice = n.nextInt();
         switch (choice){
             case 1:
                 for (Product product: productManage.sortByPriceToUp()){
-                    System.out.println(product);
+                    if (product instanceof Milk){
+                        System.out.println(product);
+                    }
                 }
                 break;
             case 2:
                 for (Product product: productManage.sortByPriceToDown()){
-                    System.out.println(product);
+                    if (product instanceof Milk){
+                        System.out.println(product);
+                    }
+                }
+                break;
+        }
+    }
+    public void sortClothes(){
+        System.out.println("1  tăng dần");
+        System.out.println("2  giảm dần");
+        int choice = n.nextInt();
+        switch (choice){
+            case 1:
+                for (Product product: productManage.sortByPriceToUp()){
+                    if (product instanceof Clothes){
+                        System.out.println(product);
+                    }
+                }
+                break;
+            case 2:
+                for (Product product: productManage.sortByPriceToDown()){
+                    if (product instanceof Clothes){
+                        System.out.println(product);
+                    }
                 }
                 break;
         }

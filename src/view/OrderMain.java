@@ -50,12 +50,6 @@ public class OrderMain {
         try {
             Order order = getNewOrder();
             orderManage.add(order);
-//            for (Product product: productManage.getProductList()){
-//                if(order.getProduct().getCode().equals(product.getCode())){
-//                    product.setQuantity(product.getQuantity() - order.getOrderQuantity());
-//                    break;
-//                }
-//            }
             List<Product> products = productManage.getProductList();
 
             for (int i = 0; i < products.size(); i++) {
@@ -104,7 +98,7 @@ public class OrderMain {
         System.out.println("Code");
         String code = s.nextLine();
         try {
-            orderManage.remove(code);
+            orderManage.find(code);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -155,14 +149,11 @@ public class OrderMain {
         System.out.println("quantity");
         int quantity = n.nextInt();
 
-//        customerManage.find(phoneNumber);
+        Customer customer = customerManage.find(phoneNumber);
 
+        Product product = productManage.find(codeProduct);
 
-
-//        productManage.find(codeProduct);
-
-
-        return new Order(code, customerManage.find(phoneNumber), productManage.find(codeProduct), quantity);
+        return new Order(code, customer, product, quantity);
     }
     public void allOrder(){
         for (Order order: orderManage.getOrderList()){
