@@ -43,7 +43,7 @@ public class Milk extends Product implements Serializable {
     @Override
     public String toString() {
         return "Milk{" + super.toString() +
-                "manufacturer='" + manufacturer + '\'' +
+                "  manufacturer='" + manufacturer + '\'' +
                 '}';
     }
 }

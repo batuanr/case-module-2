@@ -68,20 +68,20 @@ public class Order implements Serializable {
     public int getTotal() {
         if (checkQuantity()){
             total = product.getPrice() * orderQuantity;
-            product.setQuantity(product.getQuantity() - orderQuantity);
-            if(customer.getType().equals("kim cương")){
-                total = total * 90/100;
-            }
-            else {
-                if(customer.getType().equals("Vàng")){
-                    total = total * 95/100;
-                }
-                else{
-                    if(customer.getType().equals("Bạc")){
-                        total = total*98/100;
-                    }
-                }
-            }
+//            product.setQuantity(product.getQuantity() - orderQuantity);
+//            if(customer.getType().equals("kim cương")){
+//                total = total * 90/100;
+//            }
+//            else {
+//                if(customer.getType().equals("Vàng")){
+//                    total = total * 95/100;
+//                }
+//                else{
+//                    if(customer.getType().equals("Bạc")){
+//                        total = total*98/100;
+//                    }
+//                }
+//            }
 
             return total;
         }
@@ -98,8 +98,8 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "customer=" + customer +
-                ", product=" + product +
+                "customer=" + customer.getName() +
+                ", product=" + product.getName() +
                 ", orderQuantity=" + orderQuantity +
                 ", total=" + getTotal() +
                 ", orderDay=" + orderDay +

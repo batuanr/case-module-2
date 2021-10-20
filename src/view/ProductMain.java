@@ -17,6 +17,7 @@ public class ProductMain {
         System.out.println("1 thêm");
         System.out.println("2 Sửa");
         System.out.println("3 Xóa");
+        System.out.println("4  Hiển thị theo giá");
         System.out.println("4 tìm kiếm");
         System.out.println("5 show all sản phẩm");
         int choice = n.nextInt();
@@ -27,10 +28,12 @@ public class ProductMain {
                 break;
             case 3:removeProduct();
                 break;
-            case 4:search();
+            case 4:sort();
                 break;
             case 5:showAllProduct();
                 break;
+            case 6:search();
+            break;
 
         }
 
@@ -119,8 +122,6 @@ public class ProductMain {
         System.out.println("Sữa 5 tháng đến 10 tuổi");
         System.out.println("áo quần nam");
         System.out.println("áo quần nữ");
-        System.out.println("dày dép nữ");
-        System.out.println("dày dép nam");
         int choice = n.nextInt();
         switch (choice){
             case 1:
@@ -146,6 +147,23 @@ public class ProductMain {
     public void showAllProduct(){
         for (Product product: productManage.getProductList()){
             System.out.println(product);
+        }
+    }
+    public void sort(){
+        System.out.println("1  tăng dần");
+        System.out.println("2  giảm dần");
+        int choice = n.nextInt();
+        switch (choice){
+            case 1:
+                for (Product product: productManage.sortByPriceToUp()){
+                    System.out.println(product);
+                }
+                break;
+            case 2:
+                for (Product product: productManage.sortByPriceToDown()){
+                    System.out.println(product);
+                }
+                break;
         }
     }
 }

@@ -51,7 +51,7 @@ public class CustomerMain {
     public void search(){
         System.out.println("Nhập phone number");
         String phoneNumber = s.nextLine();
-        customerManage.find(phoneNumber);
+        System.out.println(customerManage.find(phoneNumber));;
     }
     public void showAll(){
         for (Customer customer: customerManage.getCustomerList()){

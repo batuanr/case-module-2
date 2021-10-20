@@ -58,10 +58,10 @@ public class Payroll implements Serializable {
     public String toString() {
         return "Payroll{" +
                 "code='" + code + '\'' +
-                ", employee=" + employee +
-                "lương cứng " + employee.getHardSalary() +
-                " thưởng : " + employee.getBonus() +
-                " phạt: " + employee.getFine() +
+                ", Name: " + employee.getName() +
+                ", lương cứng " + employee.getHardSalary() +
+                ", thưởng : " + employee.getBonus() +
+                ", phạt: " + employee.getFine() +
                 ", salary=" + getSalary() +
                 ", month=" + month +
                 '}';

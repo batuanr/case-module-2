@@ -5,17 +5,24 @@ import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CustomerManage implements GeneralManage<Customer>{
-    private MoneyMethod moneyMethod = new OrderManage();
     private InputOutFile inputOutFile = InputOutFile.getInstance();
     private List<Customer> customerList = new ArrayList<>();
     private final String CUSTOMER_FILE = "customer.obj";
 
     public List<Customer> getCustomerList() {
+        customerList = inputOutFile.readToFile(CUSTOMER_FILE);
         setTypeCustomer();
+        sortName();
         return customerList;
+    }
+
+    public String getCUSTOMER_FILE() {
+        return CUSTOMER_FILE;
     }
 
     public void setCustomerList(List<Customer> customerList) {
@@ -34,6 +41,7 @@ public class CustomerManage implements GeneralManage<Customer>{
 
     @Override
     public Customer find(String phoneNumber)  {
+        customerList = inputOutFile.readToFile(CUSTOMER_FILE);
         for (Customer customer: customerList){
             if (customer.getPhoneNumber().equals(phoneNumber)){
                 return customer;
@@ -63,15 +71,15 @@ public class CustomerManage implements GeneralManage<Customer>{
     }
     public void setTypeCustomer(){
         for (Customer customer: customerList){
-            if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 20000000){
+            if (customer.getTotalMoney() > 20000000){
                 customer.setType("kim cương");
             }
             else{
-                if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 10000000){
+                if (customer.getTotalMoney() > 10000000){
                     customer.setType("Vàng");
                 }
                 else{
-                    if (moneyMethod.totalMoneyOnePeople(customer.getPhoneNumber()) > 5000000){
+                    if (customer.getTotalMoney() > 5000000){
                         customer.setType("Bạc");
                     }
                     else{
@@ -81,4 +89,15 @@ public class CustomerManage implements GeneralManage<Customer>{
             }
         }
     }
+    public void sortName(){
+        Comparator<Customer> comparator = new Comparator<Customer>() {
+            @Override
+            public int compare(Customer o1, Customer o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
+        Collections.sort(customerList, comparator);
+    }
+
+
 }

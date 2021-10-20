@@ -12,6 +12,10 @@ public class PayrollManage implements GeneralManage<Payroll> {
     private List<Payroll> payrollList = new ArrayList<>();
     private final String PAYROLL_FILE = "payroll.obj";
 
+    public PayrollManage() {
+        this.payrollList = inputOutFile.readToFile(PAYROLL_FILE);
+    }
+
     public List<Payroll> getPayrollList() {
         return payrollList;
     }
@@ -63,4 +67,5 @@ public class PayrollManage implements GeneralManage<Payroll> {
         }
         return payrolls;
     }
+
 }

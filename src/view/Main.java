@@ -14,23 +14,24 @@ public class Main {
     private static OrderMain orderMain = new OrderMain();
     private static ProductMain productMain = new ProductMain();
     public static void main(String[] args) {
-        System.out.println("login ------------");
-        System.out.println("id or phone number: ");
-        String id = s.nextLine();
-        System.out.println("password");
-        String password = s.nextLine();
-        if (bossMain.getBossManage().getId().equals(id) && bossMain.getBossManage().getPassword().equals(password)){
-            bossRun();
-        }
-        else {
-            try {
-                if(employeeMain.getEmployeeManage().find(id).getPassword().equals(password)){
-                    employeeRun();
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+//        System.out.println("login ------------");
+//        System.out.println("id or phone number: ");
+//        String id = s.nextLine();
+//        System.out.println("password");
+//        String password = s.nextLine();
+//        if (bossMain.getBossManage().getId().equals(id) && bossMain.getBossManage().getPassword().equals(password)){
+//            bossRun();
+//        }
+//        else {
+//            try {
+//                if(employeeMain.getEmployeeManage().find(id).getPassword().equals(password)){
+//                    employeeRun();
+//                }
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        bossRun();
     }
     public static void employeeRun(){
         while (true){

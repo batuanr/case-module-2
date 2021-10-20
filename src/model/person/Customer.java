@@ -5,8 +5,17 @@ import java.io.Serializable;
 public class Customer extends Person implements Serializable {
     private String type;
     private String id;
+    private int totalMoney;
 
     public Customer() {
+    }
+
+    public int getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(int totalMoney) {
+        this.totalMoney = totalMoney;
     }
 
     public Customer(String name, String birthDate, String gender, String address, String phoneNumber, String id) {
@@ -37,7 +46,6 @@ public class Customer extends Person implements Serializable {
                 ", Gender: " + super.getGender() +
                 ", Phone Number: " + super.getPhoneNumber() +
                 ", type:'" + type + '\'' +
-                ", id:'" + id + '\'' +
-                '}';
+                ", id:'" + id + '\'' + totalMoney;
     }
 }

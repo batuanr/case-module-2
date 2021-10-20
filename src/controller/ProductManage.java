@@ -8,6 +8,8 @@ import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProductManage implements GeneralManage<Product> {
@@ -19,8 +21,12 @@ public class ProductManage implements GeneralManage<Product> {
         this.productList = inputOutFile.readToFile(PRODUCT_FILE);
     }
 
+    public String getPRODUCT_FILE() {
+        return PRODUCT_FILE;
+    }
+
     public List<Product> getProductList() {
-        return productList;
+        return inputOutFile.readToFile(PRODUCT_FILE);
     }
 
     public void setProductList(List<Product> productList) {
@@ -35,6 +41,7 @@ public class ProductManage implements GeneralManage<Product> {
 
     @Override
     public Product find(String code) throws FileNotFoundException {
+        productList = inputOutFile.readToFile(PRODUCT_FILE);
         for (Product product: productList){
             if (product.getCode().equals(code)){
                 return product;
@@ -94,5 +101,25 @@ public class ProductManage implements GeneralManage<Product> {
             clothesList.add((Clothes) product);
         }
         return clothesList;
+    }
+    public List<Product> sortByPriceToDown(){
+        Comparator<Product> comparator = new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return (o1.getPrice() < o2.getPrice()) ? 1 : -1;
+            }
+        };
+        Collections.sort(productList, comparator);
+        return productList;
+    }
+    public List<Product> sortByPriceToUp(){
+        Comparator<Product> comparator = new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return (o1.getPrice() > o2.getPrice()) ? 1 : -1;
+            }
+        };
+        Collections.sort(productList, comparator);
+        return productList;
     }
 }

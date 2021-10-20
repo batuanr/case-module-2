@@ -1,19 +1,25 @@
 package controller;
 
 import model.Order;
+import model.product.Product;
 import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderManage implements GeneralManage<Order>, MoneyMethod{
+public class OrderManage implements GeneralManage<Order>{
     private InputOutFile inputOutFile = InputOutFile.getInstance();
     private final String ORDER_FILE = "order.obj";
     private List<Order> orderList = new ArrayList<>();
 
-    public OrderManage() {
-        this.orderList = inputOutFile.readToFile(ORDER_FILE);
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     @Override
