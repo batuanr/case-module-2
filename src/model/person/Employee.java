@@ -53,6 +53,10 @@ public class Employee extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Employee: " + super.toString();
+        return "Employee: Name: " + super.getName() +
+                ", birthDate: " + super.getBirthDay() +
+                ", Gender: " + super.getGender() +
+                ", Phone Number: " + super.getPhoneNumber() +
+                ", Lương cứng: " + hardSalary;
     }
 }

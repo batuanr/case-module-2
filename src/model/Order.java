@@ -3,9 +3,10 @@ package model;
 import model.person.Customer;
 import model.product.Product;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Order {
+public class Order implements Serializable {
     private String code;
     private Customer customer;
     private Product product;

@@ -1,7 +1,6 @@
 package model.person;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class Customer extends Person implements Serializable {
     private String type;
@@ -33,9 +32,12 @@ public class Customer extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Customer{" + super.toString() +
-                "type='" + type + '\'' +
-                ", id='" + id + '\'' +
+        return "Customer: " + "Name: " +super.getName() +
+                ", birthDate: " + super.getBirthDay() +
+                ", Gender: " + super.getGender() +
+                ", Phone Number: " + super.getPhoneNumber() +
+                ", type:'" + type + '\'' +
+                ", id:'" + id + '\'' +
                 '}';
     }
 }

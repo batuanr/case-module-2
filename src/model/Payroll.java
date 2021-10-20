@@ -2,7 +2,9 @@ package model;
 
 import model.person.Employee;
 
-public class Payroll {
+import java.io.Serializable;
+
+public class Payroll implements Serializable {
     private String code;
     private Employee employee;
     private int salary;
