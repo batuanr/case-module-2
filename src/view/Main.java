@@ -1,12 +1,11 @@
 package view;
 
-import model.Order;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
     static boolean isBoss = false;
+    static boolean checkLogin = false;
     static Scanner s = new Scanner(System.in);
     static Scanner n = new Scanner(System.in);
     private static BossMain bossMain = new BossMain();
@@ -15,24 +14,29 @@ public class Main {
     private static OrderMain orderMain = new OrderMain();
     private static ProductMain productMain = new ProductMain();
     public static void main(String[] args) {
-//        System.out.println("login ------------");
-//        System.out.println("id or phone number: ");
-//        String id = s.nextLine();
-//        System.out.println("password");
-//        String password = s.nextLine();
-//        if (bossMain.getBossManage().getId().equals(id) && bossMain.getBossManage().getPassword().equals(password)){
-//            bossRun();
-//        }
-//        else {
-//            try {
-//                if(employeeMain.getEmployeeManage().find(id).getPassword().equals(password)){
-//                    employeeRun();
-//                }
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        run();
+        do {
+            System.out.println("login ------------");
+            System.out.println("id or phone number: ");
+            String id = s.nextLine();
+            System.out.println("password");
+            String password = s.nextLine();
+            String bossId = bossMain.getBossManage().getId();
+            String bossPassword = bossMain.getBossManage().getPassword();
+
+            if (bossId.equals(id) && bossPassword.equals(password)){
+                isBoss = true;
+                run();
+            }
+            else {
+                if (employeeMain.checkLogin(id , password)){
+                    isBoss = false;
+                    run();
+                }
+                else {
+                    System.out.println("Sai rồi, nhập lại đi");
+                }
+            }
+        }while (!checkLogin);
     }
 
     public static void run(){

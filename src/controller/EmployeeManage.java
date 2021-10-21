@@ -16,6 +16,10 @@ public class EmployeeManage implements GeneralManage<Employee> {
         this.employeeList = inputOutFile.readToFile(EMPLOYEE_FILE);
     }
 
+    public String getEMPLOYEE_FILE() {
+        return EMPLOYEE_FILE;
+    }
+
     public List<Employee> getEmployeeList() {
         return employeeList;
     }

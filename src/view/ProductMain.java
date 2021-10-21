@@ -2,15 +2,19 @@ package view;
 
 import controller.ProductManage;
 import model.Category;
+import model.SizeClothes;
+import model.Trademark;
 import model.product.Clothes;
 import model.product.Milk;
 import model.product.Product;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ProductMain {
+    int choice = 0;
     Scanner s = new Scanner(System.in);
     Scanner n = new Scanner(System.in);
     private ProductManage productManage = new ProductManage();
@@ -26,7 +30,7 @@ public class ProductMain {
         System.out.println("6 show all sản phẩm");
         System.out.println("7 Milk List");
         System.out.println("8 Clothes List");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         switch (choice){
             case 1:
                 try {
@@ -57,7 +61,7 @@ public class ProductMain {
     public Product getNewProduct() throws Exception {
         System.out.println("1  thêm sữa");
         System.out.println("2  thêm quần áo");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         while (choice == 2 || choice == 1){
             System.out.println("code");
             String code = s.nextLine();
@@ -70,47 +74,20 @@ public class ProductMain {
             System.out.println("quantity");
             int quantity = n.nextInt();
             if (choice == 1){
-                System.out.println("manufacturer");
-                String manufacturer = s.nextLine();
+                System.out.println("Trademark");
+                Trademark trademark = selectTrademark();
 
-                return new Milk(code, name, price, category, quantity, manufacturer);
+                return new Milk(code, name, price, category, quantity, trademark);
             }
             else{
                 System.out.println("size");
-                String size = s.nextLine();
+                SizeClothes size = selectSize();
 
                 return new Clothes(code, name, price, category, quantity, size);
             }
         }
         throw new Exception("sai choice");
     }
-    public Clothes getNewClothes(){
-        System.out.println("Code");
-        String code = s.nextLine();
-        System.out.println("Name");
-        String name = s.nextLine();
-        System.out.println("Price");
-        int price = n.nextInt();
-        System.out.println("category");
-        Category category = selectCategory();
-        System.out.println("Quantity");
-        int quantity = n.nextInt();
-        System.out.println("size");
-        String size = s.nextLine();
-
-        return new Clothes(code, name, price, category, quantity, size);
-    }
-//    public void addNewProduct(){
-//        System.out.println("1 thêm sữa");
-//        System.out.println("2 thêm quần áo");
-//        int choice = n.nextInt();
-//        switch (choice){
-//            case 1:productManage.add(getNewMilk());
-//                break;
-//            case 2:productManage.add(getNewClothes());
-//                break;
-//        }
-//    }
     public void removeProduct(){
         System.out.println("Nhập code");
         String code = s.nextLine();
@@ -123,11 +100,17 @@ public class ProductMain {
     public void find(){
         System.out.println("1  Tìm theo mã sản phẩm");
         System.out.println("2  Tìm theo danh mục");
-        int choice = n.nextInt();
+        System.out.println("2  Tìm theo hãng sữa");
+        System.out.println("2  Tìm theo size");
+        choice = n.nextInt();
         switch (choice){
             case 1: findByCode();
             break;
             case 2: findByCategory();
+            break;
+            case 3: findByTrademark();
+            break;
+            case 4: findBySize();
             break;
         }
     }
@@ -142,51 +125,45 @@ public class ProductMain {
         }
     }
     public  void findByCategory(){
-        System.out.println("1 Sữa 6 tháng đến 1,5 tuổi");
-        System.out.println("2 Sữa 1,5 tháng đến 3 tuổi");
-        System.out.println("3 Sữa 3 tháng đến 5 tuổi");
-        System.out.println("4 Sữa 5 tháng đến 10 tuổi");
-        System.out.println("5 áo quần bé trai");
-        System.out.println("6 áo quần bé gái");
-        int choice = n.nextInt();
-        switch (choice){
-            case 1:
-                System.out.println(productManage.findByCategory(Category.I));
-                break;
-            case 2:
-                System.out.println(productManage.findByCategory(Category.II));
-                break;
-            case 3:
-                System.out.println(productManage.findByCategory(Category.III));
-                break;
-            case 4:
-                System.out.println(productManage.findByCategory(Category.IV));
-                break;
-            case 5:
-                System.out.println(productManage.findByCategory(Category.V));
-                break;
-            case 6:
-                System.out.println(productManage.findByCategory(Category.VI));
-                break;
+        Category category = selectCategory();
+        List<Product> products = productManage.findByCategory(category);
+        for (Product product: products){
+            System.out.println(product);
         }
+    }
+    public void findByTrademark(){
+        Trademark trademark = selectTrademark();
+        List<Product> products = productManage.findByTrademark(trademark);
+        for (Product product: products){
+            System.out.println(product);
+        }
+    }
+    public void findBySize(){
+        SizeClothes size = selectSize();
+        List<Product> products = productManage.findBySize(size);
+        for (Product product: products);
     }
     public void showAllProduct(){
         for (Product product: productManage.getProductList()){
             System.out.println(product);
         }
     }
-    public List<Milk> getMilkList(){
-        List<Milk> milks = productManage.getMlkList();
-        return milks;
+    public void getMilkList(){
+        List<Product> milks = productManage.getMlkList();
+        for (Product product: milks){
+            System.out.println(product);
+        }
     }
-    public List<Clothes> getClothesList(){
-        List<Clothes> clothesList =productManage.getClothesList();
-        return clothesList;
+    public void getClothesList(){
+        List<Product> clothesList =productManage.getClothesList();
+        for (Product product: clothesList){
+            System.out.println(product);
+        }
     }
     public void sort(){
         System.out.println("1  sữa");
         System.out.println("1  quần áo");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         switch (choice){
             case 1:sortMilk();
             break;
@@ -197,7 +174,7 @@ public class ProductMain {
     public void sortMilk(){
         System.out.println("1  tăng dần");
         System.out.println("2  giảm dần");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         switch (choice){
             case 1:
                 for (Product product: productsToUp){
@@ -218,7 +195,7 @@ public class ProductMain {
     public void sortClothes(){
         System.out.println("1  tăng dần");
         System.out.println("2  giảm dần");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         switch (choice){
             case 1:
                 for (Product product: productsToUp){
@@ -282,12 +259,12 @@ public class ProductMain {
                 case 6:
                     if(product instanceof Milk){
                         System.out.println("Nhập hãng sữa");
-                        String manufacturer = s.nextLine();
-                        ((Milk)product).setManufacturer(manufacturer);
+                        Trademark trademark = selectTrademark();
+                        ((Milk)product).setTrademark(trademark);
                     }
                     else{
                         System.out.println("Nhập size quần áo");
-                        String size = s.nextLine();
+                        SizeClothes size = selectSize();
                         ((Clothes)product).setSize(size);
                     }
                     break;
@@ -305,9 +282,37 @@ public class ProductMain {
         System.out.println("4 Danh mục IV :Sữa 5 tháng đến 10 tuổi");
         System.out.println("5 Danh mục V :áo quần bé trai");
         System.out.println("6 Danh mục VI :áo quần bé gái");
-        int choice = n.nextInt();
+        choice = n.nextInt();
         int indexCategory = choice - 1;
         Category category = Category.values()[indexCategory];
         return category;
+    }
+    public Trademark selectTrademark(){
+        System.out.println("1 Thương hiệu: Royal AUSNZ");
+        System.out.println("2 Thương hiệu: Nestlé");
+        System.out.println("3 Thương hiệu: Aptamil");
+        System.out.println("4 Thương hiệu: Abbott");
+        System.out.println("5 Thương hiệu: Meiji");
+        System.out.println("6 Thương hiệu: Vinamilk");
+        choice = n.nextInt();
+        int indexTrademark = choice - 1;
+        Trademark trademark = Trademark.values()[indexTrademark];
+        return trademark;
+    }
+    public SizeClothes selectSize(){
+        System.out.println("1 - Size số 1 dành cho bé từ: 8 - 10kg");
+        System.out.println("2 - Size số 2 dành cho bé từ: 10 – 12kg");
+        System.out.println("3 - Size số 3 dành cho bé từ: 12 -14kg");
+        System.out.println("4 - Size số 4 dành cho bé từ: 14 – 15kg");
+        System.out.println("5 - Size số 5 dành cho bé từ: 15 -17kg");
+        System.out.println("6 - Size số 6 dành cho bé từ: 17 – 19kg");
+        System.out.println("7 - Size số 7 dành cho bé từ: 19 – 22kg");
+        System.out.println("8 - Size số 8 dành cho bé từ: 22 – 26kg");
+        System.out.println("9 - Size số 9 dành cho bé từ: 27 – 32kg");
+        System.out.println("10 - Size số 10 dành cho bé từ: 32 – 35kg");
+        choice = n.nextInt();
+        int indexSizeClothes = choice - 1;
+        SizeClothes size = SizeClothes.values()[indexSizeClothes];
+        return size;
     }
 }

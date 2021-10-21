@@ -2,6 +2,8 @@ package controller;
 
 
 import model.Category;
+import model.SizeClothes;
+import model.Trademark;
 import model.product.Clothes;
 import model.product.Milk;
 import model.product.Product;
@@ -80,28 +82,41 @@ public class ProductManage implements GeneralManage<Product> {
         return products;
     }
 
-    public List<Product> findByManufacturer(String manufacturer){
+    public List<Product> findByTrademark(Trademark trademark){
         List<Product> products = new ArrayList<>();
-        for (Product product: productList){
-            if (product instanceof Milk && ((Milk) product).getManufacturer().equals(manufacturer)){
+        for (Product product: getProductList()){
+            if (product instanceof Milk && ((Milk) product).getTrademark().equals(trademark)){
                 productList.add(product);
             }
         }
         return products;
     }
-    public List<Milk> getMlkList(){
-        List<Milk> milkList = new ArrayList<>();
-        for (Product product: productList){
-            milkList.add((Milk) product);
+    public List<Product> findBySize(SizeClothes size){
+        List<Product> products = new ArrayList<>();
+        for (Product product: getProductList()){
+            if (product instanceof Clothes && ((Clothes) product).getSize().equals(size)){
+                products.add(product);
+            }
         }
-        return milkList;
+        return products;
     }
-    public List<Clothes> getClothesList(){
-        List<Clothes> clothesList = new ArrayList<>();
-        for (Product product: productList){
-            clothesList.add((Clothes) product);
+    public List<Product> getMlkList(){
+        List<Product> products = new ArrayList<>();
+        for (Product product: getProductList()){
+            if (product instanceof Milk){
+                products.add(product);
+            }
         }
-        return clothesList;
+        return products;
+    }
+    public List<Product> getClothesList(){
+        List<Product> products = new ArrayList<>();
+        for (Product product: productList){
+            if (product instanceof Clothes){
+                products.add(product);
+            }
+        }
+        return products;
     }
     public List<Product> sortByPriceToDown(){
         Comparator<Product> comparator = new Comparator<Product>() {

@@ -82,11 +82,10 @@ public class OrderMain {
         System.out.println("Nhập mã order");
         String code = s.nextLine();
         try {
-            Order order = orderManage.find(code);
+            orderManage.edit(code, getNewOrder());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
     }
     public void removeOrder(){
         System.out.println("Code");
@@ -138,7 +137,7 @@ public class OrderMain {
         System.out.println("Doanh thu tháng " + month + " là: " + totalMoney + "VND");
     }
     public Order getNewOrder() throws FileNotFoundException {
-        System.out.println("Code");
+        System.out.println("enter Code order");
         String code = s.nextLine();
         System.out.println("enter phone number");
         String phoneNumber = s.nextLine();

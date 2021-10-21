@@ -5,12 +5,14 @@ import controller.PayrollManage;
 import model.Payroll;
 import model.person.Customer;
 import model.person.Employee;
+import storage.InputOutFile;
 
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeMain {
+    private InputOutFile inputOutFile = InputOutFile.getInstance();
     Scanner s = new Scanner(System.in);
     Scanner n = new Scanner(System.in);
     private PayrollManage payrollManage = new PayrollManage();
@@ -160,6 +162,17 @@ public class EmployeeMain {
         int hardSalary = n.nextInt();
 
         return new Employee(name, birthDay, gender, address, phoneNumber, hardSalary);
+    }
+    public boolean checkLogin(String id, String password){
+        List<Employee> employeeList = inputOutFile.readToFile(employeeManage.getEMPLOYEE_FILE());
+        if(employeeList.size() > 0){
+            for (Employee employee: employeeList){
+                if (employee.getPassword().equals(password)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

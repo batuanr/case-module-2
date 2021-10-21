@@ -1,34 +1,34 @@
 package model.product;
 
 import model.Category;
+import model.Trademark;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class Milk extends Product implements Serializable {
-    private String manufacturer;
+    private Trademark trademark;
 
     public Milk() {
     }
 
-    public Milk(String code, String name, int price, Category category, int quantity, String manufacturer) {
+    public Milk(String code, String name, int price, Category category, int quantity, Trademark trademark) {
         super(code, name, price, category, quantity);
-        this.manufacturer = manufacturer;
+        this.trademark = trademark;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    public Trademark getTrademark() {
+        return trademark;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setTrademark(Trademark trademark) {
+        this.trademark = trademark;
     }
 
 
     @Override
     public String toString() {
         return "Milk{" + super.toString() +
-                "  manufacturer='" + getManufacturer() + '\'' +
+                "  manufacturer='" + getTrademark() + '\'' +
                 '}';
     }
 }
