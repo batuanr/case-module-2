@@ -53,18 +53,18 @@ public class Main {
                 System.out.println("4  change password");
             }
             System.out.println("0 exit");
-            int choice = n.nextInt();
+            String choice = s.nextLine();
             switch (choice){
-                case 1:
+                case "1":
                     productMain.product();
                     break;
-                case 2:
+                case "2":
                     customerMain.customer();
                     break;
-                case 3:
+                case "3":
                     orderMain.getRevenue();
                     break;
-                case 4:
+                case "4":
                     if(isBoss){
                         employeeMain.employee();
                     }
@@ -72,12 +72,14 @@ public class Main {
                         employeeMain.changePassword();
                     }
                     break;
-                case 5:
+                case "5":
                     if(isBoss){
                         bossMain.changeAccount();
                     }
                     break;
-                case 0:return;
+                case "0":return;
+                default:
+                    System.out.println("chọn lại");
             }
         }
     }

@@ -100,7 +100,7 @@ public class Order implements Serializable {
                 "customer: " + customer.getName() +
                 ", product: " + product.getName() +
                 ", orderQuantity: " + orderQuantity +
-                ", total: " + getTotal() +
+                ", total: " + getTotal() + "VND" +
                 ", orderDay: " + orderDay +
                 '}';
     }

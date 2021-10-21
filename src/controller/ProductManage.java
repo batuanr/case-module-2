@@ -119,23 +119,25 @@ public class ProductManage implements GeneralManage<Product> {
         return products;
     }
     public List<Product> sortByPriceToDown(){
+        List<Product> products = getProductList();
         Comparator<Product> comparator = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
                 return (o1.getPrice() < o2.getPrice()) ? 1 : -1;
             }
         };
-        Collections.sort(productList, comparator);
-        return productList;
+        Collections.sort(products, comparator);
+        return products;
     }
     public List<Product> sortByPriceToUp(){
+        List<Product> products = getProductList();
         Comparator<Product> comparator = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
                 return (o1.getPrice() > o2.getPrice()) ? 1 : -1;
             }
         };
-        Collections.sort(productList, comparator);
-        return productList;
+        Collections.sort(products, comparator);
+        return products;
     }
 }

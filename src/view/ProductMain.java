@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ProductMain {
-    int choice = 0;
     Scanner s = new Scanner(System.in);
     Scanner n = new Scanner(System.in);
     private ProductManage productManage = new ProductManage();
@@ -30,7 +29,7 @@ public class ProductMain {
         System.out.println("6 show all sản phẩm");
         System.out.println("7 Milk List");
         System.out.println("8 Clothes List");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         switch (choice){
             case 1:
                 try {
@@ -61,7 +60,7 @@ public class ProductMain {
     public Product getNewProduct() throws Exception {
         System.out.println("1  thêm sữa");
         System.out.println("2  thêm quần áo");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         while (choice == 2 || choice == 1){
             System.out.println("code");
             String code = s.nextLine();
@@ -100,9 +99,9 @@ public class ProductMain {
     public void find(){
         System.out.println("1  Tìm theo mã sản phẩm");
         System.out.println("2  Tìm theo danh mục");
-        System.out.println("2  Tìm theo hãng sữa");
-        System.out.println("2  Tìm theo size");
-        choice = n.nextInt();
+        System.out.println("3  Tìm theo hãng sữa");
+        System.out.println("4  Tìm theo size");
+        int choice = n.nextInt();
         switch (choice){
             case 1: findByCode();
             break;
@@ -163,7 +162,7 @@ public class ProductMain {
     public void sort(){
         System.out.println("1  sữa");
         System.out.println("1  quần áo");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         switch (choice){
             case 1:sortMilk();
             break;
@@ -174,7 +173,7 @@ public class ProductMain {
     public void sortMilk(){
         System.out.println("1  tăng dần");
         System.out.println("2  giảm dần");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         switch (choice){
             case 1:
                 for (Product product: productsToUp){
@@ -193,9 +192,9 @@ public class ProductMain {
         }
     }
     public void sortClothes(){
-        System.out.println("1  tăng dần");
-        System.out.println("2  giảm dần");
-        choice = n.nextInt();
+        System.out.println("1 Giá tăng dần");
+        System.out.println("2 Giá giảm dần");
+        int choice = n.nextInt();
         switch (choice){
             case 1:
                 for (Product product: productsToUp){
@@ -277,12 +276,12 @@ public class ProductMain {
     }
     public Category selectCategory(){
         System.out.println("1 Danh mục I : Sữa 6 tháng đến 1,5 tuổi");
-        System.out.println("2 Danh mục II : Sữa 1,5 tháng đến 3 tuổi");
-        System.out.println("3 Danh mục III :Sữa 3 tháng đến 5 tuổi");
-        System.out.println("4 Danh mục IV :Sữa 5 tháng đến 10 tuổi");
+        System.out.println("2 Danh mục II : Sữa 1,5  đến 3 tuổi");
+        System.out.println("3 Danh mục III :Sữa 3  đến 5 tuổi");
+        System.out.println("4 Danh mục IV :Sữa 5  đến 10 tuổi");
         System.out.println("5 Danh mục V :áo quần bé trai");
         System.out.println("6 Danh mục VI :áo quần bé gái");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         int indexCategory = choice - 1;
         Category category = Category.values()[indexCategory];
         return category;
@@ -294,7 +293,7 @@ public class ProductMain {
         System.out.println("4 Thương hiệu: Abbott");
         System.out.println("5 Thương hiệu: Meiji");
         System.out.println("6 Thương hiệu: Vinamilk");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         int indexTrademark = choice - 1;
         Trademark trademark = Trademark.values()[indexTrademark];
         return trademark;
@@ -310,7 +309,7 @@ public class ProductMain {
         System.out.println("8 - Size số 8 dành cho bé từ: 22 – 26kg");
         System.out.println("9 - Size số 9 dành cho bé từ: 27 – 32kg");
         System.out.println("10 - Size số 10 dành cho bé từ: 32 – 35kg");
-        choice = n.nextInt();
+        int choice = n.nextInt();
         int indexSizeClothes = choice - 1;
         SizeClothes size = SizeClothes.values()[indexSizeClothes];
         return size;

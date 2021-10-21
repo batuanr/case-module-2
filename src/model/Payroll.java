@@ -60,9 +60,9 @@ public class Payroll implements Serializable {
                 "code:'" + code + '\'' +
                 ", Name: " + employee.getName() +
                 ", lương cứng " + employee.getHardSalary() +
-                ", thưởng : " + employee.getBonus() +
-                ", phạt: " + employee.getFine() +
-                ", salary: " + getSalary() +
+                ", thưởng : " + employee.getBonus() + "VND" +
+                ", phạt: " + employee.getFine() + "VND" +
+                ", salary: " + getSalary() + "VND" +
                 ", month " + month +
                 '}';
     }
