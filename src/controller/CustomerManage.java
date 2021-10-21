@@ -42,7 +42,7 @@ public class CustomerManage implements GeneralManage<Customer>{
 
     @Override
     public Customer find(String phoneNumber)  {
-        customerList = inputOutFile.readToFile(CUSTOMER_FILE);
+        customerList = getCustomerList();
         for (Customer customer: customerList){
             if (customer.getPhoneNumber().equals(phoneNumber)){
                 return customer;

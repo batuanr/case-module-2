@@ -1,6 +1,7 @@
 package controller;
 
 
+import model.Category;
 import model.product.Clothes;
 import model.product.Milk;
 import model.product.Product;
@@ -69,7 +70,7 @@ public class ProductManage implements GeneralManage<Product> {
         return product;
     }
 
-    public List<Product> findByCategory(String category){
+    public List<Product> findByCategory(Category category){
         List<Product> products = new ArrayList<>();
         for (Product product: productList){
             if (product.getCategory().equals(category)){

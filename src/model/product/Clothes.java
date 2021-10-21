@@ -1,5 +1,7 @@
 package model.product;
 
+import model.Category;
+
 import java.io.Serializable;
 
 public class Clothes extends Product implements Serializable {
@@ -8,7 +10,7 @@ public class Clothes extends Product implements Serializable {
     public Clothes() {
     }
 
-    public Clothes(String code, String name, int price, String category, int quantity, String size) {
+    public Clothes(String code, String name, int price, Category category, int quantity, String size) {
         super(code, name, price, category, quantity);
         this.size = size;
     }

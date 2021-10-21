@@ -79,13 +79,14 @@ public class OrderMain {
         }
     }
     public void editOrder(){
-        System.out.println("Code");
+        System.out.println("Nhập mã order");
         String code = s.nextLine();
         try {
-            orderManage.edit(code, getNewOrder());
+            Order order = orderManage.find(code);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        
     }
     public void removeOrder(){
         System.out.println("Code");

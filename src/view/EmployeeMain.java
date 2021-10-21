@@ -42,7 +42,7 @@ public class EmployeeMain {
             break;
             case 3:removeEmployee();
             break;
-            case 4:search();
+            case 4:findEmployee();
             break;
             case 5:showAllEmployee();
             break;
@@ -73,7 +73,7 @@ public class EmployeeMain {
             e.printStackTrace();
         }
     }
-    public void search(){
+    public void findEmployee(){
         System.out.println("Nhập sdt");
         String phoneNumber = s.nextLine();
         try {

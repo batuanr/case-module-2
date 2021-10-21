@@ -1,17 +1,17 @@
 package model.product;
 
+import model.Category;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Milk extends Product implements Serializable {
     private String manufacturer;
-    private LocalDate manufactureDate;
-    private LocalDate expiryDate;
 
     public Milk() {
     }
 
-    public Milk(String code, String name, int price, String category, int quantity, String manufacturer) {
+    public Milk(String code, String name, int price, Category category, int quantity, String manufacturer) {
         super(code, name, price, category, quantity);
         this.manufacturer = manufacturer;
     }
@@ -24,26 +24,11 @@ public class Milk extends Product implements Serializable {
         this.manufacturer = manufacturer;
     }
 
-    public LocalDate getManufactureDate() {
-        return manufactureDate;
-    }
-
-    public void setManufactureDate(LocalDate manufactureDate) {
-        this.manufactureDate = manufactureDate;
-    }
-
-    public LocalDate getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
-    }
 
     @Override
     public String toString() {
         return "Milk{" + super.toString() +
-                "  manufacturer='" + manufacturer + '\'' +
+                "  manufacturer='" + getManufacturer() + '\'' +
                 '}';
     }
 }

@@ -1,18 +1,20 @@
 package model.product;
 
+import model.Category;
+
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {
     private String code;
     private String name;
     private int price;
-    private String category;
+    private Category category;
     private int quantity;
 
     public Product() {
     }
 
-    public Product(String code, String name, int price, String category, int quantity) {
+    public Product(String code, String name, int price, Category category, int quantity) {
         this.code = code;
         this.name = name;
         this.price = price;
@@ -54,11 +56,11 @@ public abstract class Product implements Serializable {
         this.price = price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

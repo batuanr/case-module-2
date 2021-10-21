@@ -12,13 +12,15 @@ public class OrderManage implements GeneralManage<Order>{
     private final String ORDER_FILE = "order.obj";
     private List<Order> orderList = new ArrayList<>();
 
-
+    public OrderManage() {
+        orderList = inputOutFile.readToFile(ORDER_FILE);
+    }
     public List<Order> getOrderList() {
         return inputOutFile.readToFile(ORDER_FILE);
     }
 
-    public OrderManage() {
-        orderList = inputOutFile.readToFile(ORDER_FILE);
+    public String getORDER_FILE() {
+        return ORDER_FILE;
     }
 
     public void setOrderList(List<Order> orderList) {
