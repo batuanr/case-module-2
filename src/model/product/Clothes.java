@@ -26,8 +26,8 @@ public class Clothes extends Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Clothes{" + super.toString() +
-                "size='" + getSize() + '\'' +
+        return "Clothes{"  + super.toString() +
+                ", size: '" + getSize() + '\'' +
                 '}';
     }
 }

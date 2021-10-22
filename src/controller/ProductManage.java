@@ -86,7 +86,7 @@ public class ProductManage implements GeneralManage<Product> {
         List<Product> products = new ArrayList<>();
         for (Product product: getProductList()){
             if (product instanceof Milk && ((Milk) product).getTrademark().equals(trademark)){
-                productList.add(product);
+                products.add(product);
             }
         }
         return products;
